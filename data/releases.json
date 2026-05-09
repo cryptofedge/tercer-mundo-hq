@@ -1,0 +1,47 @@
+{
+  "artist": "Mando El Pelado",
+  "real_name": "Armando F. Arteaga",
+  "last_updated": "2026-05-09",
+  "releases": [
+    {
+      "title": "Noche En Miami",
+      "type": "single",
+      "website_page": "https://www.mandoelpelado.com/noche-en-miami",
+      "streaming": {
+        "spotify": null,
+        "apple_music": null,
+        "youtube": null
+      },
+      "release_date": null,
+      "status": "released",
+      "notes": "Featured single on website"
+    },
+    {
+      "title": "C O D I G O S",
+      "type": "single",
+      "website_page": "https://www.mandoelpelado.com/c-o-d-i-g-o-s",
+      "streaming": {
+        "spotify": null,
+        "apple_music": null,
+        "youtube": null
+      },
+      "release_date": null,
+      "status": "released",
+      "notes": "Featured single on website"
+    },
+    {
+      "title": "Una Bandida",
+      "type": "single",
+      "website_page": "https://www.mandoelpelado.com/una-bandida",
+      "streaming": {
+        "spotify": null,
+        "apple_music": null,
+        "youtube": null
+      },
+      "release_date": null,
+      "status": "released",
+      "notes": "Featured single on website"
+    }
+  ],
+  "upcoming": []
+}
