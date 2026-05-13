@@ -1,33 +1,60 @@
-# 🌍 3er Mundo — Tercer Mundo HQ
+# 🎤 Mando El Pelado — Artist Management Hub
 
-> **Powered by FEDGE 2.O** | Eclat Network / Eclat Universe
+> **Managed by FEDGE 2.O Agent** | Eclat Network / Eclat Universe  
+> **Website:** [mandoelpelado.com](https://www.mandoelpelado.com)  
 > **Manager:** Rafael "Fellito" Rodríguez
-> **Website:** https://www.mandoelpelado.com
 
-## Mission
-Structured, role-based artist management org built on FEDGE 2.O.
-**Flagship Artist:** Mando El Pelado | **Markets:** USA · Ecuador · LatAm
+---
 
-## Tiers
-| Tier | Role | Access |
-|------|------|--------|
-| T1 | Artist | Own data, PRO portals, bookings |
-| T2 | Producer | Credits, splits, collab folders |
-| T3 | Manager | Full roster (read), bookings (write) |
-| T4 | A&R | Release pipeline, DSP, catalog |
-| T5 | Executive (Fellito) | Full org, agent controls, P&L |
+## 🧭 Quick Links
 
-## Quick Links
-- Spotify: https://open.spotify.com/artist/0pizWb9jgAB1NTCIcJ043H
-- BMI Songview: https://repertoire.bmi.com
-- ASCAP ACE: https://www.ascap.com/repertory
-- Monday.com: https://monday.com
-- SimpleTix: https://www.simpletix.com
+| Platform | Link |
+|---|---|
+| 🌐 Website | https://www.mandoelpelado.com |
+| 🎵 Spotify | https://open.spotify.com/artist/0pizWb9jgAB1NTCIcJ043H |
+| 🍎 Apple Music | https://music.apple.com/us/artist/mando-el-pelado/1105120259 |
+| 📸 Instagram | https://www.instagram.com/mandoelpelado/ |
+| 🐦 Twitter/X | https://twitter.com/mandoelpelado |
+| 📘 Facebook | https://www.facebook.com/mandoelpelado/ |
+| 🎵 TikTok | https://www.tiktok.com/discover/mando-el-pelado |
+| ▶️ YouTube | https://www.youtube.com/channel/UCex_oMHDznqRpZM7A03RjVw |
+| 👕 Merch | https://mando-el-pelado-merch.printify.me/ |
+| 📅 Booking | https://www.mandoelpelado.com/book-online |
 
-## Agent First Actions
-1. Connect to https://github.com/cryptofedge
-2. Load org/MEMBERS.md — identify member + tier
-3. Check agent/TASKS.md for pending actions
-4. If PRO sync stale (>7 days) → trigger refresh
+---
 
-*Powered by FEDGE 2.O · Eclat Network © 2025*
+## 📂 Repo Structure
+
+```
+mando-el-pelado/
+├── README.md              ← You are here
+├── ARTIST.md              ← Full artist profile & biography
+├── RELEASES.md            ← Discography & release tracking
+├── SOCIALS.md             ← Social media strategy & posting guidelines
+├── BOOKINGS.md            ← Booking types, pricing, and workflow
+├── agent/
+│   ├── SOUL.md            ← Agent identity & values for this artist
+│   ├── MEMORY.md          ← Persistent knowledge the agent must retain
+│   ├── TASKS.md           ← Recurring agent tasks & automation triggers
+│   └── PLAYBOOK.md        ← How the agent handles common scenarios
+└── data/
+    ├── releases.json      ← Structured release data
+    └── socials.json       ← Social account IDs and handles
+```
+
+---
+
+## 🤖 Agent Instructions (TL;DR)
+
+This repo is the **single source of truth** for FEDGE 2.O agent managing Mando El Pelado.
+
+- Read `agent/SOUL.md` to understand the artist's voice and tone
+- Read `agent/MEMORY.md` before any task to recall key facts
+- Check `agent/TASKS.md` for scheduled automations
+- Use `agent/PLAYBOOK.md` for common scenarios (booking requests, promo, content)
+- All release data lives in `data/releases.json`
+- All platform credentials/handles live in `data/socials.json`
+
+---
+
+*Powered by Eclat Universe © 2012–2025 Mando El Pelado. All Rights Reserved.*

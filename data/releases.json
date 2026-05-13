@@ -1,10 +1,47 @@
-[
-  {"id":"una-bandida-2025","title":"Una Bandida","artist":"mando-el-pelado","featured":["Oveja Negra","Jordan la Voz del Barrio"],"type":"single","year":2025,"iswc":"T-100.234.567-0","genre":"Urban Latino","bmi_registered":true,"ascap_registered":false,"status":"live"},
-  {"id":"codigos-2024","title":"Códigos","artist":"mando-el-pelado","featured":["Oveja Negra"],"type":"single","year":2024,"iswc":"T-099.112.340-0","genre":"Urban Latino","bmi_registered":true,"ascap_registered":true,"status":"live"},
-  {"id":"deseos-2024","title":"Deseos","artist":"mando-el-pelado","featured":["Toby Love"],"type":"single","year":2024,"iswc":"T-077.334.112-0","genre":"Pop Latino","bmi_registered":true,"ascap_registered":true,"status":"live"},
-  {"id":"buscando-2022","title":"Buscando","artist":"mando-el-pelado","featured":["Eddiel"],"type":"single","year":2022,"iswc":"T-066.221.990-0","genre":"Urban Latino","bmi_registered":true,"ascap_registered":false,"status":"live"},
-  {"id":"olvidar-2021","title":"Olvidar","artist":"mando-el-pelado","featured":["E.Q."],"type":"single","year":2021,"iswc":"T-088.991.223-0","genre":"Urban Latino","bmi_registered":true,"ascap_registered":true,"status":"live","press":"Billboard Argentina Sep 2021"},
-  {"id":"corito-sano-2020","title":"Corito Sano","artist":"mando-el-pelado","featured":["Oveja Negra"],"type":"single","year":2020,"iswc":"T-055.112.887-0","genre":"Urban Latino","bmi_registered":true,"ascap_registered":true,"status":"live"},
-  {"id":"traicion-2019","title":"Traición","artist":"mando-el-pelado","featured":[],"type":"single","year":2019,"iswc":"T-044.990.334-0","genre":"Urban Latino","bmi_registered":true,"ascap_registered":true,"status":"live"},
-  {"id":"una-noche-2012","title":"Una Noche","artist":"mando-el-pelado","featured":[],"type":"single","year":2012,"iswc":"T-033.887.112-0","genre":"Urban Latino","bmi_registered":true,"ascap_registered":true,"status":"live","notes":"Debut single"}
-]
+{
+  "artist": "Mando El Pelado",
+  "real_name": "Armando F. Arteaga",
+  "last_updated": "2026-05-09",
+  "releases": [
+    {
+      "title": "Noche En Miami",
+      "type": "single",
+      "website_page": "https://www.mandoelpelado.com/noche-en-miami",
+      "streaming": {
+        "spotify": null,
+        "apple_music": null,
+        "youtube": null
+      },
+      "release_date": null,
+      "status": "released",
+      "notes": "Featured single on website"
+    },
+    {
+      "title": "C O D I G O S",
+      "type": "single",
+      "website_page": "https://www.mandoelpelado.com/c-o-d-i-g-o-s",
+      "streaming": {
+        "spotify": null,
+        "apple_music": null,
+        "youtube": null
+      },
+      "release_date": null,
+      "status": "released",
+      "notes": "Featured single on website"
+    },
+    {
+      "title": "Una Bandida",
+      "type": "single",
+      "website_page": "https://www.mandoelpelado.com/una-bandida",
+      "streaming": {
+        "spotify": null,
+        "apple_music": null,
+        "youtube": null
+      },
+      "release_date": null,
+      "status": "released",
+      "notes": "Featured single on website"
+    }
+  ],
+  "upcoming": []
+}

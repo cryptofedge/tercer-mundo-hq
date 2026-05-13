@@ -1,0 +1,55 @@
+{
+  "artist": "Mando El Pelado",
+  "last_updated": "2026-05-09",
+  "platforms": {
+    "website": {
+      "url": "https://www.mandoelpelado.com",
+      "cms": "Wix",
+      "admin": "Fellito Rodriguez"
+    },
+    "spotify": {
+      "url": "https://open.spotify.com/artist/0pizWb9jgAB1NTCIcJ043H",
+      "artist_id": "0pizWb9jgAB1NTCIcJ043H",
+      "for_artists_access": null
+    },
+    "apple_music": {
+      "url": "https://music.apple.com/us/artist/mando-el-pelado/1105120259",
+      "artist_id": "1105120259"
+    },
+    "youtube": {
+      "url": "https://www.youtube.com/channel/UCex_oMHDznqRpZM7A03RjVw",
+      "channel_id": "UCex_oMHDznqRpZM7A03RjVw"
+    },
+    "instagram": {
+      "url": "https://www.instagram.com/mandoelpelado/",
+      "handle": "@mandoelpelado",
+      "priority": "HIGH"
+    },
+    "twitter_x": {
+      "url": "https://twitter.com/mandoelpelado",
+      "handle": "@mandoelpelado"
+    },
+    "facebook": {
+      "url": "https://www.facebook.com/mandoelpelado/",
+      "page": "mandoelpelado"
+    },
+    "tiktok": {
+      "url": "https://www.tiktok.com/discover/mando-el-pelado",
+      "priority": "HIGH",
+      "notes": "Growth opportunity — currently underdeveloped"
+    },
+    "merch": {
+      "url": "https://mando-el-pelado-merch.printify.me/",
+      "platform": "Printify",
+      "type": "print-on-demand"
+    }
+  },
+  "booking": {
+    "url": "https://www.mandoelpelado.com/book-online",
+    "services": [
+      { "type": "Bookings", "duration": "1h", "pricing": "Price Upon Event" },
+      { "type": "Features", "duration": "1h", "pricing": "Price Upon Event" },
+      { "type": "Interviews", "duration": "1h", "pricing": "Price Upon Event" }
+    ]
+  }
+}

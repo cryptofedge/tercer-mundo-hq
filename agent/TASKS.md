@@ -1,45 +1,71 @@
-# ⚙️ FEDGE 2.O — Task Schedule
+# ⚙️ TASKS.md — Recurring Agent Tasks for Mando El Pelado
 
-> Runtime: OpenClaw / pm2 | Timezone: America/New_York
+---
 
-## On Every Session Open
-- [ ] Connect to https://github.com/cryptofedge
-- [ ] Load org/MEMBERS.md — identify member + tier
-- [ ] Check MEMORY.md for last sync timestamps
-- [ ] If PRO sync stale >7 days → trigger refresh
-- [ ] Scan Google Drive for new files
-- [ ] Check bookings.json for past-due approvals
+## 📅 Daily Tasks
 
-## Weekly (Monday 9am ET)
-- [ ] PRO sync: BMI + ASCAP → update data/royalties.json
-- [ ] Notify artist (T1) if new statement available
-- [ ] DSP snapshot: Spotify/Apple/YouTube → update ANALYTICS.md
-- [ ] Catalog gap check → update rights/CATALOG_AUDIT.md
-- [ ] OAuth token health: alert T5 if expiring within 7 days
+| Task | Action |
+|---|---|
+| Monitor Instagram DMs | Flag booking/collab requests → forward to Fellito |
+| Monitor Facebook messages | Same as above |
+| Check YouTube comments | Respond to fans, flag spam |
+| Check Spotify for Artists | Log play counts, listener data |
 
-## Monthly (1st, 10am ET)
-- [ ] Revenue report per artist → export PDF to Google Drive
-- [ ] Royalty aggregate: flag works with 0 earnings + >10k streams
-- [ ] Agent audit export → Drive: Exec/Agent Logs/[YYYY-MM].md
+---
 
-## On New Release
-- [ ] Register BMI → https://www.bmi.com/creators
-- [ ] Register ASCAP → https://www.ascap.com/member-access
-- [ ] Register SAYCE (Ecuador)
-- [ ] Submit to Songtrust
-- [ ] Add to data/works.json + artists/[name]/PRO.md
-- [ ] Create Google Drive release folder
-- [ ] Create Monday.com release card
-- [ ] Notify T3 manager
+## 📅 Weekly Tasks
 
-## WhatsApp Bot Commands
-| Command | Tier | Action |
-|---------|------|--------|
-| !sync pro | T5 | Force PRO sync |
-| !royalties | T1+ | Show PRO balances (scoped) |
-| !catalog | T3+ | Run gap audit |
-| !onboard [name] [tier] | T5 | Begin onboarding |
-| !tierset [id] [tier] | T5 | Change member tier |
-| !booking [artist] [date] [venue] | T3+ | Create booking |
-| !lang [code] | T1+ | Switch language |
-| !status | T3+ | Org health summary |
+| Task | Action |
+|---|---|
+| Social content post (ES/EN) | Draft 2–3 posts for IG/FB/TikTok |
+| Blog update | Draft 1 blog post on website |
+| Booking check | Review any new booking requests on Wix |
+| Merch check | Review Printify order status |
+| Streams report | Pull Spotify/Apple Music weekly numbers → report to Fellito |
+
+---
+
+## 📅 Monthly Tasks
+
+| Task | Action |
+|---|---|
+| Analytics report | Compile full platform performance report for Fellito |
+| SEO audit | Check website SEO health |
+| Content planning | Draft next month's content calendar |
+| Release planning | Check if new music is dropping — prep promo plan |
+
+---
+
+## 🔔 Trigger-Based Tasks
+
+| Trigger | Agent Action |
+|---|---|
+| New booking inquiry | Acknowledge → log → notify Fellito → await approval |
+| Feature request | Log details → notify Fellito → do NOT confirm price |
+| Press interview request | Log → forward to Fellito for approval |
+| New song release | Activate promo sequence (see PLAYBOOK.md) |
+| Merch order issues | Log → forward to Printify support |
+| Negative press / social drama | Do NOT respond publicly → notify Fellito immediately |
+
+---
+
+## 📣 Promo Automation Triggers
+
+When instructed by Fellito:
+1. Draft social posts for all platforms
+2. Update website blog
+3. Generate Spotify pitching pitch text
+4. Draft email newsletter to members list
+5. Create short-form video script for TikTok/Reels
+
+---
+
+## 🤖 Agent Command Reference (WhatsApp Bot)
+
+| Command | Action |
+|---|---|
+| `!mando status` | Report current platform stats |
+| `!mando post [content]` | Queue social post for review |
+| `!mando booking [name]` | Log new booking inquiry |
+| `!mando release [title]` | Start release promo sequence |
+| `!mando report` | Generate weekly analytics report |
