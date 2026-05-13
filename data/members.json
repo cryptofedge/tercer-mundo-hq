@@ -1,0 +1,4 @@
+[
+  {"id":"fellito-rodriguez","name":"Rafael Rodríguez","alias":"Fellito","tier":5,"role":"Executive / Owner / Manager","company":"Eclat Network","location":"Miami, FL","timezone":"America/New_York","github":"cryptofedge","pro_memberships":["BMI"],"preferred_lang":"en","scope":"full_org","status":"active"},
+  {"id":"mando-el-pelado","name":"Armando F. Arteaga","alias":"Mando El Pelado","tier":1,"role":"Artist","genre":["Urban Latino","Pop Latino"],"markets":["USA","Ecuador","Latin America"],"website":"https://www.mandoelpelado.com","spotify_id":"0pizWb9jgAB1NTCIcJ043H","apple_music_id":"1105120259","pro_memberships":["BMI"],"preferred_lang":"es","scope":"own_artist_folder","status":"active","notes":"Flagship artist. NYC born, Ecuadorian roots. Active since 2012."}
+]
