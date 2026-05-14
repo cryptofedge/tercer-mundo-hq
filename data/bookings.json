@@ -1,4 +1,1 @@
-[
-  {"id":"booking-2025-001","artist":"mando-el-pelado","event":"Calle 8 Miami Stage — Univisión","venue":"Calle 8 Miami","city":"Miami, FL","date":"2025-06-14","status":"confirmed","contract_signed":true},
-  {"id":"booking-2025-002","artist":"mando-el-pelado","event":"Para Ti Ecuador Festival","venue":"Flushing Meadows Corona Park","city":"New York, NY","date":"2025-07-28","status":"contract_pending","contract_signed":false}
-]
+{"artist":"Mando El Pelado","last_updated":"2025-05-13","bookings":[]}

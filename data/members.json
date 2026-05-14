@@ -1,4 +1,32 @@
-[
-  {"id":"fellito-rodriguez","name":"Rafael Rodríguez","alias":"Fellito","tier":5,"role":"Executive / Owner / Manager","company":"Eclat Network","location":"Miami, FL","timezone":"America/New_York","github":"cryptofedge","pro_memberships":["BMI"],"preferred_lang":"en","scope":"full_org","status":"active"},
-  {"id":"mando-el-pelado","name":"Armando F. Arteaga","alias":"Mando El Pelado","tier":1,"role":"Artist","genre":["Urban Latino","Pop Latino"],"markets":["USA","Ecuador","Latin America"],"website":"https://www.mandoelpelado.com","spotify_id":"0pizWb9jgAB1NTCIcJ043H","apple_music_id":"1105120259","pro_memberships":["BMI"],"preferred_lang":"es","scope":"own_artist_folder","status":"active","notes":"Flagship artist. NYC born, Ecuadorian roots. Active since 2012."}
-]
+{
+  "org": "3er Mundo",
+  "powered_by": "FEDGE 2.O",
+  "last_updated": "2025-05-13",
+  "members": [
+    {
+      "id": "fellito-rodriguez",
+      "name": "Fellito Rodriguez",
+      "role": "Executive Director",
+      "tier": 5,
+      "github": "@cryptofedge",
+      "location": "Miami, FL",
+      "status": "active"
+    },
+    {
+      "id": "mando-el-pelado",
+      "name": "Armando F. Arteaga",
+      "stage_name": "Mando El Pelado",
+      "role": "Flagship Artist",
+      "tier": 1,
+      "location": "New York, NY",
+      "roots": "Ecuador",
+      "active_since": "2012",
+      "genre": ["Latin Urban", "Bachata", "Merengue"],
+      "pro_primary": "BMI",
+      "pro_secondary": "ASCAP",
+      "pro_pending": ["SAYCE"],
+      "spotify": "https://open.spotify.com/artist/0pizWb9jgAB1NTCIcJ043H",
+      "status": "active"
+    }
+  ]
+}

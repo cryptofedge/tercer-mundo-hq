@@ -1,26 +1,23 @@
-# 📜 Tercer Mundo — Constitution
+# 🌎 TERCER MUNDO HQ — CONSTITUTION
+> **Organization:** 3er Mundo | **Executive:** Fellito Rodriguez · @cryptofedge
+> **Powered by:** FEDGE 2.O Agent · Eclat Network | **Effective:** 2025
 
-## Mission
-Build generational wealth for artists from underserved communities through professional management, AI-powered operations, and global rights protection.
+## ARTICLE I — MISSION
+3er Mundo develops, protects, and scales Latin independent artists from underrepresented communities.
 
-## Core Values
-1. Artist ownership first — Artists retain 100% masters + publishing
-2. Transparency — Every action logged
-3. Cultural pride — Built for NY, Miami, Ecuador, Latin America
-4. Speed without shortcuts — Never skip PRO registration
-5. Powered by FEDGE 2.O — AI multiplies, never replaces
+## ARTICLE II — VALUES
+- **Sovereignty** — Artists own their masters, publishing, and identity.
+- **Transparency** — All splits, royalty flows, and decisions are documented.
+- **Accountability** — Every member operates under a signed contract and tier-based permissions.
+- **Scale** — Local roots. Global reach. Bachata to the world.
 
-## IP Ownership
-| Asset | Owner |
-|-------|-------|
-| Master recordings | Artist (100%) |
-| Publishing writer share | Songwriter(s) |
-| Publishing publisher share | Eclat Network |
-| Tercer Mundo brand | Eclat Network / Fellito |
+## ARTICLE III — LEADERSHIP
+| Role | Name | Tier | Location |
+|------|------|------|----------|
+| Executive Director | Fellito Rodriguez | T5 | Miami, FL |
+| Flagship Artist | Armando F. Arteaga "Mando El Pelado" | T1 | NYC / Ecuador |
 
-## Data Governance
-- Personal data never committed unredacted
-- OAuth tokens in .env only — never in repo
-- Google Drive = documents source of truth
-- This repo = metadata source of truth
-- agent/MEMORY.md is immutable
+## ARTICLE IV — RIGHTS PROTECTION
+All works must be registered with at least one PRO before or at release, catalogued in data/works.json within 30 days, and assigned mechanical rights through Songtrust within 60 days.
+
+*FEDGE 2.O Agent is the enforcer of this Constitution.*

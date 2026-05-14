@@ -1,16 +1,19 @@
-# 👤 Member Roster
+# 👥 TERCER MUNDO HQ — MEMBERS
 
-## Rafael "Fellito" Rodríguez — T5 Executive
-- Company: Eclat Network / Eclat Universe
-- Location: Miami, FL | Timezone: America/New_York
-- GitHub: @cryptofedge | PRO: BMI
-- Status: ✅ Active
+## Fellito Rodriguez — T5 Executive
+- **GitHub:** @cryptofedge | **Location:** Miami, FL
+- **Role:** Founder, Executive Director, FEDGE 2.O Operator
 
-## Armando F. Arteaga "Mando El Pelado" — T1 Artist
-- Genre: Urban Latino / Pop Latino
-- Markets: USA (NY, Miami) · Ecuador · Latin America
-- Website: https://www.mandoelpelado.com
-- Spotify: https://open.spotify.com/artist/0pizWb9jgAB1NTCIcJ043H
-- Apple Music: https://music.apple.com/us/artist/mando-el-pelado/1105120259
-- PRO: BMI (primary) — see artists/mando-el-pelado/PRO.md
-- Status: ✅ Active
+## Armando F. Arteaga — T1 Artist (Flagship)
+- **Stage Name:** Mando El Pelado
+- **Location:** NYC / Ecuador roots | **Active Since:** 2012
+- **Genre:** Latin Urban, Bachata, Merengue
+- **PRO:** BMI (primary) · ASCAP (partial) · SAYCE (pending)
+- **Website:** mandoelpelado.com
+- **Spotify:** https://open.spotify.com/artist/0pizWb9jgAB1NTCIcJ043H
+
+## Roster Capacity
+| Tier | Current | Max |
+|------|---------|-----|
+| T5 Executive | 1 | 2 |
+| T1 Artist | 1 | 50 |

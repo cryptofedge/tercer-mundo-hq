@@ -1,19 +1,17 @@
-# 👑 Executive Dashboard — Tier 5
+# 🏢 EXEC DASHBOARD — T5 Only (Fellito Rodriguez)
 
-## KPIs
-- Total revenue YTD | PRO receivables | Deal pipeline | Catalog gaps | Agent health
+## Org Health
+| Category | Status |
+|----------|--------|
+| Active Artists | 1 — Mando El Pelado |
+| Works in Catalog | 9 |
+| Rights Coverage | ⚠️ Partial |
+| Uncollected Revenue | ~$4.2K–$7.8K/yr |
 
-## Sections
-1. Org P&L — Revenue by category/artist/market; export to Drive
-2. Agent Audit Log — Full MEMORY.md; immutable
-3. Deal Pipeline — Signings, sync deals, brand partnerships
-4. PRO Master View — All artists × all PROs; OAuth health
-5. Member Management — Full roster; onboard/offboard/tier change
-6. Infrastructure — WhatsApp bot pm2, Drive sync, Monday webhooks
-
-## Standing Alerts
-1. ⚠️  Anthropic API key — ROTATE at console.anthropic.com NOW
-2. 🔴 SAYCE — no works registered, Ecuador revenue lost
-3. 🔴 Songtrust — not set up, global mechanical uncollected
-4. 🔴 SoundExchange — not registered, digital neighboring rights uncollected
-5. 🔴 Noche en Miami — not registered on any PRO
+## Tech Stack
+| System | Status |
+|--------|--------|
+| WhatsApp Bot (fedge-bot.js) | ✅ Live · pm2 · 88 skills |
+| Trust Fund Game | ✅ Expo |
+| Mental Health Game | 🔄 In progress |
+| Tercer Mundo HQ repo | ✅ This repo |

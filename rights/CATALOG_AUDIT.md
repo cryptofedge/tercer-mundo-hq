@@ -1,35 +1,19 @@
-# 🔍 Catalog Gap Audit
+# 📋 CATALOG AUDIT — Mando El Pelado
 
-> Auto-run: weekly | Manual: !catalog | Last run: 2025-01-01
+| Category | Count | Status |
+|----------|-------|--------|
+| Total Works | 9 | — |
+| Registered BMI | 8 | ⚠️ Missing: Noche en Miami |
+| Registered ASCAP | 6 | ⚠️ Missing: 3 works |
+| Registered SAYCE | 0 | 🔴 CRITICAL |
+| On Songtrust | 0 | 🔴 CRITICAL |
+| On SoundExchange | 0 | 🔴 CRITICAL |
 
-## Summary
-| Status | Count |
-|--------|-------|
-| ✅ Fully registered (BMI + ASCAP) | 6 |
-| ⚠️ Missing one PRO | 2 |
-| 🔴 Not registered anywhere | 1 |
-| 🌎 SAYCE (Ecuador) — none registered | 9 |
-| 🌐 Songtrust — not set up | All |
-| 📻 SoundExchange — not registered | All |
-
-## Work Status
-| Work | BMI | ASCAP | SAYCE | Priority |
-|------|-----|-------|-------|----------|
-| Noche en Miami | ❌ | ❌ | ❌ | 🔴 URGENT |
-| Una Bandida | ✅ | ❌ | ❌ | 🔴 HIGH |
-| Buscando | ✅ | ❌ | ❌ | 🔴 HIGH |
-| Códigos | ✅ | ✅ | ❌ | 🟡 Medium |
-| Olvidar | ✅ | ✅ | ❌ | 🟡 Medium |
-| Deseos | ✅ | ✅ | ❌ | 🟡 Medium |
-| Corito Sano | ✅ | ✅ | ❌ | 🟡 Medium |
-| Traición | ✅ | ✅ | ❌ | 🟡 Medium |
-| Una Noche | ✅ | ✅ | ❌ | 🟡 Medium |
-
-## Revenue Impact
-| Gap | Est. annual loss |
-|-----|-----------------|
-| SAYCE Ecuador | $500–$2,000 |
-| Songtrust global | $1,000–$5,000 |
-| SoundExchange | $200–$800 |
-| ASCAP gaps (2 works) | $100–$500 |
-| **Total uncollected** | **$1,800–$8,300/yr** |
+## Revenue Recovery Estimate
+| Action | Est. Annual |
+|--------|-------------|
+| SAYCE registration | $1,000–$3,000 |
+| Songtrust | $2,500/yr |
+| SoundExchange | $500–$1,500/yr |
+| ASCAP gaps | $200–$800/yr |
+| **Total** | **$4,200–$7,800** |
