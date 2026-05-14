@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tercer Mundo HQ — 3er Mundo Artist Management</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root{--orange:#FF6200;--orange-dim:#cc4e00;--orange-bg:rgba(255,98,0,0.08);--bg:#0e0e0f;--bg2:#161618;--bg3:#1e1e21;--bg4:#252528;--border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);--text:#f0f0f0;--text2:#a0a0aa;--text3:#666672;--green:#22c55e;--red:#ef4444;--yellow:#f59e0b;--blue:#3b82f6;--font-mono:'IBM Plex Mono','Courier New',monospace;--font-sans:'Inter',system-ui,sans-serif;--radius:8px;--radius-lg:12px}
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:14px;min-height:100vh}
+.shell{display:flex;min-height:100vh}
+.sidebar{width:220px;min-width:220px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+.sidebar-logo{padding:20px 18px 16px;border-bottom:1px solid var(--border)}
+.logo-org{font-family:var(--font-mono);font-size:11px;color:var(--orange);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px}
+.logo-title{font-size:16px;font-weight:600;color:var(--text);line-height:1.2}
+.logo-sub{font-size:11px;color:var(--text3);margin-top:3px;font-family:var(--font-mono)}
+.nav{padding:12px 10px;flex:1}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:var(--radius);color:var(--text2);cursor:pointer;font-size:13px;font-weight:500;transition:all 0.12s;margin-bottom:2px;border:none;background:none;width:100%;text-align:left}
+.nav-item:hover{background:var(--bg3);color:var(--text)}
+.nav-item.active{background:var(--orange-bg);color:var(--orange)}
+.alert-badge{margin-left:auto;background:var(--red);color:#fff;border-radius:10px;font-size:10px;font-weight:600;padding:1px 6px;font-family:var(--font-mono)}
+.sidebar-footer{padding:14px 16px;border-top:1px solid var(--border);font-size:11px;color:var(--text3);font-family:var(--font-mono)}
+.main{flex:1;overflow:hidden;display:flex;flex-direction:column}
+.topbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;align-items:center;gap:12px}
+.topbar-title{font-size:15px;font-weight:600;color:var(--text)}
+.topbar-sub{font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-left:auto}
+.alert-strip{background:rgba(239,68,68,0.12);border-bottom:1px solid rgba(239,68,68,0.25);padding:9px 28px;display:flex;align-items:center;gap:10px;font-size:12px;color:#fca5a5;font-family:var(--font-mono)}
+.alert-dot{width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.content{padding:28px;flex:1;overflow-y:auto}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 20px;margin-bottom:16px}
+.card-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);font-family:var(--font-mono);margin-bottom:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.metric-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px}
+.metric-label{font-size:11px;color:var(--text3);font-family:var(--font-mono);letter-spacing:0.05em;margin-bottom:6px}
+.metric-value{font-size:26px;font-weight:600;color:var(--text);font-family:var(--font-mono)}
+.metric-sub{font-size:11px;color:var(--text2);margin-top:4px}
+.metric-value.danger{color:var(--red)}.metric-value.warn{color:var(--yellow)}.metric-value.ok{color:var(--green)}.metric-value.orange{color:var(--orange)}
+.alerts-list{display:flex;flex-direction:column;gap:8px}
+.alert-item{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:var(--radius);background:var(--bg3);border:1px solid var(--border)}
+.alert-item.crit{border-left:3px solid var(--red)}.alert-item.high{border-left:3px solid var(--yellow)}
+.alert-label{font-size:12px;font-weight:600;color:var(--text);flex:1}
+.alert-action{font-size:11px;color:var(--orange);text-decoration:none;font-family:var(--font-mono);white-space:nowrap;background:var(--orange-bg);padding:3px 8px;border-radius:4px;border:1px solid rgba(255,98,0,0.25)}
+.badge-crit{background:rgba(239,68,68,0.15);color:#fca5a5;font-size:10px;padding:2px 7px;border-radius:4px;font-family:var(--font-mono);font-weight:600;white-space:nowrap}
+.badge-high{background:rgba(245,158,11,0.15);color:#fcd34d;font-size:10px;padding:2px 7px;border-radius:4px;font-family:var(--font-mono);font-weight:600;white-space:nowrap}
+.data-table{width:100%;border-collapse:collapse;font-size:13px}
+.data-table th{text-align:left;padding:8px 12px;color:var(--text3);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;font-family:var(--font-mono);border-bottom:1px solid var(--border)}
+.data-table td{padding:10px 12px;border-bottom:1px solid var(--border);color:var(--text)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table tr:hover td{background:var(--bg3)}
+.status-ok{color:var(--green);font-family:var(--font-mono);font-size:12px}
+.status-warn{color:var(--yellow);font-family:var(--font-mono);font-size:12px}
+.status-bad{color:var(--red);font-family:var(--font-mono);font-size:12px}
+.search-bar{display:flex;align-items:center;gap:10px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:8px 14px;margin-bottom:16px}
+.search-bar input{background:none;border:none;outline:none;color:var(--text);font-size:13px;flex:1}
+.search-bar input::placeholder{color:var(--text3)}
+.pro-link{display:inline-flex;align-items:center;gap:5px;color:var(--orange);text-decoration:none;font-size:12px;font-family:var(--font-mono)}
+.pro-link:hover{text-decoration:underline}
+.kanban{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kanban-col{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px}
+.kanban-col-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);font-family:var(--font-mono);margin-bottom:12px}
+.kanban-empty{text-align:center;color:var(--text3);font-size:12px;padding:20px 0;font-family:var(--font-mono)}
+.tier-row{display:grid;grid-template-columns:60px 140px 1fr;align-items:center;gap:16px;padding:12px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px}
+.tier-num{font-family:var(--font-mono);font-size:20px;font-weight:600;color:var(--orange)}
+.tier-name{font-weight:600;font-size:13px}
+.tier-perms{font-size:12px;color:var(--text2)}
+.lang-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.lang-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:14px;text-align:center}
+.lang-flag{font-size:26px;margin-bottom:6px}
+.lang-name{font-size:13px;font-weight:600;color:var(--text)}
+.lang-code{font-size:11px;font-family:var(--font-mono);color:var(--text3);margin-top:2px}
+.terminal{background:#0a0a0b;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden}
+.terminal-bar{background:var(--bg3);padding:10px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.terminal-dot{width:10px;height:10px;border-radius:50%}
+.terminal-title{font-family:var(--font-mono);font-size:12px;color:var(--text3);margin-left:8px}
+.terminal-log{padding:16px;font-family:var(--font-mono);font-size:12px;line-height:1.8;max-height:280px;overflow-y:auto;color:#8ab4f8}
+.log-ok{color:var(--green)}.log-warn{color:var(--yellow)}.log-err{color:var(--red)}.log-prompt{color:var(--orange)}
+.terminal-input-row{display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:1px solid var(--border);background:#0a0a0b}
+.terminal-input-row span{font-family:var(--font-mono);font-size:12px;color:var(--orange)}
+.terminal-input-row input{background:none;border:none;outline:none;color:var(--text);font-family:var(--font-mono);font-size:12px;flex:1}
+.wa-cmds{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+.wa-cmd{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px}
+.wa-cmd-trigger{font-family:var(--font-mono);font-size:12px;color:var(--orange);margin-bottom:3px}
+.wa-cmd-desc{font-size:11px;color:var(--text2)}
+.chart-wrap{position:relative;height:220px;margin-top:10px}
+.section-title{font-size:13px;font-weight:600;color:var(--text2);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.07em;font-family:var(--font-mono)}
+.divider{height:1px;background:var(--border);margin:20px 0}
+.tag{display:inline-block;background:var(--bg4);color:var(--text2);border-radius:4px;font-size:11px;padding:2px 8px;font-family:var(--font-mono);margin-right:4px;margin-bottom:4px}
+.tag.orange{background:var(--orange-bg);color:var(--orange);border:1px solid rgba(255,98,0,0.2)}
+.tag.green{background:rgba(34,197,94,0.1);color:#86efac}
+.tag.red{background:rgba(239,68,68,0.1);color:#fca5a5}
+.tag.yellow{background:rgba(245,158,11,0.1);color:#fcd34d}
+.artist-card{display:flex;align-items:flex-start;gap:16px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px;margin-bottom:16px}
+.artist-avatar{width:56px;height:56px;border-radius:50%;background:var(--orange-bg);border:2px solid var(--orange);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-weight:600;font-size:18px;color:var(--orange);flex-shrink:0}
+.btn{background:var(--orange);color:#fff;border:none;border-radius:var(--radius);padding:8px 16px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font-mono);transition:background 0.12s;text-decoration:none;display:inline-block}
+.btn:hover{background:var(--orange-dim)}
+.btn-ghost{background:var(--bg4);color:var(--text2);border:1px solid var(--border2);border-radius:var(--radius);padding:7px 14px;font-size:12px;cursor:pointer;font-family:var(--font-mono);transition:all 0.12s;text-decoration:none;display:inline-block}
+.btn-ghost:hover{background:var(--bg3);color:var(--text)}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:4px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@media(max-width:768px){.sidebar{display:none}.grid-4{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:1fr 1fr}.kanban{grid-template-columns:1fr}.lang-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-org">3er Mundo · FEDGE 2.O</div>
+    <div class="logo-title">Tercer Mundo HQ</div>
+    <div class="logo-sub">v1.0.0 · main</div>
+  </div>
+  <nav class="nav">
+    <button class="nav-item active" onclick="goTab('dashboard',this)">⌂ Dashboard <span class="alert-badge">6</span></button>
+    <button class="nav-item" onclick="goTab('analytics',this)">↗ Analytics</button>
+    <button class="nav-item" onclick="goTab('catalog',this)">♪ Catalog</button>
+    <button class="nav-item" onclick="goTab('rights',this)">⊕ Rights</button>
+    <button class="nav-item" onclick="goTab('bookings',this)">◈ Bookings</button>
+    <button class="nav-item" onclick="goTab('tiers',this)">▲ Tiers</button>
+    <button class="nav-item" onclick="goTab('languages',this)">⊞ Languages</button>
+    <button class="nav-item" onclick="goTab('agent',this)">&gt;_ Agent</button>
+  </nav>
+  <div class="sidebar-footer">Fellito Rodriguez<br>T5 Executive · Miami FL<br>@cryptofedge</div>
+</aside>
+<main class="main">
+  <div class="topbar">
+    <div id="topbar-title" class="topbar-title">Dashboard</div>
+    <div class="topbar-sub">3er Mundo · 2025-05-13</div>
+  </div>
+  <div class="alert-strip">
+    <div class="alert-dot"></div>
+    🔴 Rotate Anthropic API key → console.anthropic.com &nbsp;|&nbsp; 🔴 SAYCE Ecuador: 0/9 works — ~$1K+/yr uncollected
+  </div>
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div id="tab-dashboard" class="tab-panel active">
+      <div class="grid-4">
+        <div class="metric-card"><div class="metric-label">Artists</div><div class="metric-value orange">1</div><div class="metric-sub">Mando El Pelado · T1</div></div>
+        <div class="metric-card"><div class="metric-label">Works in Catalog</div><div class="metric-value">9</div><div class="metric-sub">3 with registration gaps</div></div>
+        <div class="metric-card"><div class="metric-label">Uncollected / yr</div><div class="metric-value danger">~$7.8K</div><div class="metric-sub">PRO + mechanicals + digital</div></div>
+        <div class="metric-card"><div class="metric-label">Open Alerts</div><div class="metric-value warn">6</div><div class="metric-sub">4 critical · 2 medium</div></div>
+      </div>
+      <div class="section-title">Flagship Artist</div>
+      <div class="artist-card">
+        <div class="artist-avatar">MP</div>
+        <div style="flex:1">
+          <div style="font-size:15px;font-weight:600;margin-bottom:4px;">Armando F. Arteaga — <span style="color:var(--orange)">Mando El Pelado</span></div>
+          <div style="font-size:12px;color:var(--text2);margin-bottom:8px;">T1 Artist · NYC / Ecuador roots · Active since 2012</div>
+          <div><span class="tag">Latin Urban</span><span class="tag">Bachata</span><span class="tag">Merengue</span><span class="tag green">BMI ✓</span><span class="tag yellow">ASCAP partial</span><span class="tag red">SAYCE ✗</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;">
+          <a href="https://open.spotify.com/artist/0pizWb9jgAB1NTCIcJ043H" target="_blank" class="btn-ghost">Spotify →</a>
+          <a href="https://www.mandoelpelado.com" target="_blank" class="btn-ghost">Website →</a>
+        </div>
+      </div>
+      <div class="section-title" style="margin-top:20px;">Live Alerts</div>
+      <div class="alerts-list">
+        <div class="alert-item crit"><span class="badge-crit">CRITICAL</span><span class="alert-label">Anthropic API key exposed in prior chat</span><a href="https://console.anthropic.com" target="_blank" class="alert-action">Rotate now →</a></div>
+        <div class="alert-item crit"><span class="badge-crit">CRITICAL</span><span class="alert-label">SAYCE Ecuador — 0/9 works registered (~$1K+/yr lost)</span><a href="https://sayce.com.ec" target="_blank" class="alert-action">Register →</a></div>
+        <div class="alert-item crit"><span class="badge-crit">CRITICAL</span><span class="alert-label">Noche en Miami — not registered on BMI, ASCAP, or SAYCE</span><a href="https://bmi.com/creators" target="_blank" class="alert-action">BMI →</a></div>
+        <div class="alert-item crit"><span class="badge-crit">CRITICAL</span><span class="alert-label">Una Bandida + Buscando — not registered on ASCAP</span><a href="https://aceonline.ascap.com" target="_blank" class="alert-action">ASCAP →</a></div>
+        <div class="alert-item high"><span class="badge-high">HIGH</span><span class="alert-label">Songtrust not set up — global mechanicals uncollected (~$2.5K/yr)</span><a href="https://songtrust.com" target="_blank" class="alert-action">Setup →</a></div>
+        <div class="alert-item high"><span class="badge-high">HIGH</span><span class="alert-label">SoundExchange not registered — digital neighboring rights = $0</span><a href="https://soundexchange.com" target="_blank" class="alert-action">Register →</a></div>
+      </div>
+      <div class="section-title" style="margin-top:24px;">Connected Platforms</div>
+      <div class="grid-3">
+        <div class="metric-card" style="text-align:center;"><div class="metric-label">SimpleTix</div><div class="metric-value ok" style="font-size:14px;">● Live</div><div class="metric-sub"><a href="https://simpletix.com" target="_blank" class="pro-link">Open →</a></div></div>
+        <div class="metric-card" style="text-align:center;"><div class="metric-label">Monday.com</div><div class="metric-value ok" style="font-size:14px;">● Live</div><div class="metric-sub"><a href="https://monday.com" target="_blank" class="pro-link">Open →</a></div></div>
+        <div class="metric-card" style="text-align:center;"><div class="metric-label">Google Drive</div><div class="metric-value warn" style="font-size:14px;">⚠ Reconnect</div><div class="metric-sub">3er Mundo HQ folder</div></div>
+        <div class="metric-card" style="text-align:center;"><div class="metric-label">App-Sorteos</div><div class="metric-value ok" style="font-size:14px;">● Live</div><div class="metric-sub"><a href="https://app-sorteos.com" target="_blank" class="pro-link">Open →</a></div></div>
+        <div class="metric-card" style="text-align:center;"><div class="metric-label">BMI Songview</div><div class="metric-value ok" style="font-size:14px;">● Live</div><div class="metric-sub"><a href="https://songview.bmi.com" target="_blank" class="pro-link">Search →</a></div></div>
+        <div class="metric-card" style="text-align:center;"><div class="metric-label">ASCAP ACE</div><div class="metric-value ok" style="font-size:14px;">● Live</div><div class="metric-sub"><a href="https://aceonline.ascap.com" target="_blank" class="pro-link">Search →</a></div></div>
+      </div>
+    </div>
+
+    <!-- ANALYTICS -->
+    <div id="tab-analytics" class="tab-panel">
+      <div class="grid-4">
+        <div class="metric-card"><div class="metric-label">Est. Uncollected</div><div class="metric-value danger">$7.8K</div><div class="metric-sub">Per year</div></div>
+        <div class="metric-card"><div class="metric-label">PRO Coverage</div><div class="metric-value warn">44%</div><div class="metric-sub">4/9 fully registered</div></div>
+        <div class="metric-card"><div class="metric-label">Territories</div><div class="metric-value">245+</div><div class="metric-sub">After Songtrust</div></div>
+        <div class="metric-card"><div class="metric-label">Active Since</div><div class="metric-value">2012</div><div class="metric-sub">13 years catalog</div></div>
+      </div>
+      <div class="grid-2">
+        <div class="card"><div class="card-title">Uncollected Revenue by Source</div><div class="chart-wrap"><canvas id="chart-revenue"></canvas></div></div>
+        <div class="card"><div class="card-title">PRO Registration Coverage</div><div class="chart-wrap"><canvas id="chart-pro"></canvas></div></div>
+      </div>
+      <div class="card"><div class="card-title">Revenue Recovery Timeline</div><div class="chart-wrap" style="height:180px;"><canvas id="chart-timeline"></canvas></div></div>
+    </div>
+
+    <!-- CATALOG -->
+    <div id="tab-catalog" class="tab-panel">
+      <div class="search-bar"><span style="color:var(--text3)">⌕</span><input type="text" placeholder="Search works..." oninput="filterCatalog(this.value)"></div>
+      <div class="card" style="overflow-x:auto;">
+        <table class="data-table">
+          <thead><tr><th>#</th><th>Title</th><th>BMI</th><th>ASCAP</th><th>SAYCE</th><th>Actions</th></tr></thead>
+          <tbody id="catalog-body">
+            <tr><td>1</td><td><strong>Noche en Miami</strong></td><td><span class="status-warn">⚠ Pending</span></td><td><span class="status-warn">⚠ Pending</span></td><td><span class="status-bad">✗</span></td><td><a href="https://bmi.com/creators" target="_blank" class="pro-link">BMI</a> · <a href="https://aceonline.ascap.com" target="_blank" class="pro-link">ASCAP</a> · <a href="https://sayce.com.ec" target="_blank" class="pro-link">SAYCE</a></td></tr>
+            <tr><td>2</td><td><strong>Una Bandida</strong></td><td><span class="status-ok">✓</span></td><td><span class="status-bad">✗</span></td><td><span class="status-bad">✗</span></td><td><a href="https://aceonline.ascap.com" target="_blank" class="pro-link">ASCAP</a> · <a href="https://sayce.com.ec" target="_blank" class="pro-link">SAYCE</a></td></tr>
+            <tr><td>3</td><td><strong>Buscando</strong></td><td><span class="status-ok">✓</span></td><td><span class="status-bad">✗</span></td><td><span class="status-bad">✗</span></td><td><a href="https://aceonline.ascap.com" target="_blank" class="pro-link">ASCAP</a> · <a href="https://sayce.com.ec" target="_blank" class="pro-link">SAYCE</a></td></tr>
+            <tr><td>4</td><td><em style="color:var(--text3)">TBD</em></td><td><span class="status-ok">✓</span></td><td><span class="status-ok">✓</span></td><td><span class="status-bad">✗</span></td><td><a href="https://sayce.com.ec" target="_blank" class="pro-link">SAYCE</a></td></tr>
+            <tr><td>5</td><td><em style="color:var(--text3)">TBD</em></td><td><span class="status-ok">✓</span></td><td><span class="status-ok">✓</span></td><td><span class="status-bad">✗</span></td><td><a href="https://sayce.com.ec" target="_blank" class="pro-link">SAYCE</a></td></tr>
+            <tr><td>6</td><td><em style="color:var(--text3)">TBD</em></td><td><span class="status-ok">✓</span></td><td><span class="status-ok">✓</span></td><td><span class="status-bad">✗</span></td><td><a href="https://sayce.com.ec" target="_blank" class="pro-link">SAYCE</a></td></tr>
+            <tr><td>7</td><td><em style="color:var(--text3)">TBD</em></td><td><span class="status-ok">✓</span></td><td><span class="status-ok">✓</span></td><td><span class="status-bad">✗</span></td><td><a href="https://sayce.com.ec" target="_blank" class="pro-link">SAYCE</a></td></tr>
+            <tr><td>8</td><td><em style="color:var(--text3)">TBD</em></td><td><span class="status-ok">✓</span></td><td><span class="status-ok">✓</span></td><td><span class="status-bad">✗</span></td><td><a href="https://sayce.com.ec" target="_blank" class="pro-link">SAYCE</a></td></tr>
+            <tr><td>9</td><td><em style="color:var(--text3)">TBD</em></td><td><span class="status-ok">✓</span></td><td><span class="status-ok">✓</span></td><td><span class="status-bad">✗</span></td><td><a href="https://sayce.com.ec" target="_blank" class="pro-link">SAYCE</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RIGHTS -->
+    <div id="tab-rights" class="tab-panel">
+      <div class="section-title">Priority PROs</div>
+      <div class="card" style="overflow-x:auto;">
+        <table class="data-table">
+          <thead><tr><th>PRO</th><th>Country</th><th>Type</th><th>Status</th><th>Link</th></tr></thead>
+          <tbody>
+            <tr><td><strong>BMI</strong></td><td>USA</td><td>Performance</td><td><span class="status-warn">⚠ Partial</span></td><td><a href="https://bmi.com/creators" target="_blank" class="pro-link">bmi.com →</a></td></tr>
+            <tr><td><strong>ASCAP</strong></td><td>USA</td><td>Performance</td><td><span class="status-warn">⚠ Partial</span></td><td><a href="https://aceonline.ascap.com" target="_blank" class="pro-link">ascap.com →</a></td></tr>
+            <tr><td><strong>SAYCE</strong></td><td>Ecuador</td><td>Performance</td><td><span class="status-bad">✗ NOT STARTED</span></td><td><a href="https://sayce.com.ec" target="_blank" class="pro-link">sayce.com.ec →</a></td></tr>
+            <tr><td><strong>Songtrust</strong></td><td>Global 245+</td><td>Mechanical</td><td><span class="status-bad">✗ NOT STARTED</span></td><td><a href="https://songtrust.com" target="_blank" class="pro-link">songtrust.com →</a></td></tr>
+            <tr><td><strong>SoundExchange</strong></td><td>USA/Digital</td><td>Neighboring</td><td><span class="status-bad">✗ NOT STARTED</span></td><td><a href="https://soundexchange.com" target="_blank" class="pro-link">soundexchange.com →</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid-3" style="margin-top:16px;">
+        <div class="metric-card"><div class="metric-label">BMI Songview</div><a href="https://songview.bmi.com" target="_blank" class="btn" style="margin-top:8px;display:block;text-align:center;">Search →</a></div>
+        <div class="metric-card"><div class="metric-label">ASCAP ACE</div><a href="https://aceonline.ascap.com" target="_blank" class="btn" style="margin-top:8px;display:block;text-align:center;">Search →</a></div>
+        <div class="metric-card"><div class="metric-label">ISRC Lookup</div><a href="https://isrcsearch.ifpi.org" target="_blank" class="btn" style="margin-top:8px;display:block;text-align:center;">Search →</a></div>
+      </div>
+    </div>
+
+    <!-- BOOKINGS -->
+    <div id="tab-bookings" class="tab-panel">
+      <div class="grid-4" style="margin-bottom:24px;">
+        <div class="metric-card"><div class="metric-label">Confirmed</div><div class="metric-value ok">0</div></div>
+        <div class="metric-card"><div class="metric-label">In Negotiation</div><div class="metric-value warn">0</div></div>
+        <div class="metric-card"><div class="metric-label">Inquiries</div><div class="metric-value">0</div></div>
+        <div class="metric-card"><div class="metric-label">Book Mando</div><div style="margin-top:8px;"><a href="https://www.mandoelpelado.com/book-online" target="_blank" class="btn-ghost" style="font-size:11px;">Book Online →</a></div></div>
+      </div>
+      <div class="kanban">
+        <div class="kanban-col"><div class="kanban-col-title">Inquiries</div><div class="kanban-empty">No open inquiries</div></div>
+        <div class="kanban-col"><div class="kanban-col-title">In Negotiation</div><div class="kanban-empty">No active negotiations</div></div>
+        <div class="kanban-col"><div class="kanban-col-title">Confirmed</div><div class="kanban-empty">No confirmed shows</div></div>
+      </div>
+    </div>
+
+    <!-- TIERS -->
+    <div id="tab-tiers" class="tab-panel">
+      <div class="section-title">Tier Structure</div>
+      <div style="margin-bottom:24px;">
+        <div class="tier-row"><div class="tier-num">T1</div><div class="tier-name">Artist</div><div class="tier-perms">View own profile · Submit content · Request bookings</div></div>
+        <div class="tier-row"><div class="tier-num">T2</div><div class="tier-name">Collaborator</div><div class="tier-perms">T1 + View shared catalog · Join sessions · Comment on releases</div></div>
+        <div class="tier-row"><div class="tier-num">T3</div><div class="tier-name">Manager</div><div class="tier-perms">T2 + Edit artist profiles · Manage bookings · Pull reports</div></div>
+        <div class="tier-row"><div class="tier-num">T4</div><div class="tier-name">Director</div><div class="tier-perms">T3 + Approve contracts · Manage financials · Invite members</div></div>
+        <div class="tier-row" style="border-left:3px solid var(--orange);"><div class="tier-num">T5</div><div class="tier-name" style="color:var(--orange);">Executive</div><div class="tier-perms">Full access · Override · Org-level decisions · GitHub admin</div></div>
+      </div>
+      <div class="section-title">Current Roster</div>
+      <div class="grid-3">
+        <div class="metric-card"><div class="metric-label">T5 Executive</div><div class="metric-value orange">1/2</div><div class="metric-sub">Fellito Rodriguez</div></div>
+        <div class="metric-card"><div class="metric-label">T1 Artist</div><div class="metric-value orange">1/50</div><div class="metric-sub">Mando El Pelado</div></div>
+        <div class="metric-card"><div class="metric-label">Open Slots</div><div class="metric-value">75</div><div class="metric-sub">T1–T4 available</div></div>
+      </div>
+    </div>
+
+    <!-- LANGUAGES -->
+    <div id="tab-languages" class="tab-panel">
+      <div class="section-title">10-Language System — data/i18n/</div>
+      <div class="lang-grid" style="margin-bottom:20px;">
+        <div class="lang-card"><div class="lang-flag">🇺🇸</div><div class="lang-name">English</div><div class="lang-code">en</div></div>
+        <div class="lang-card"><div class="lang-flag">🇪🇸</div><div class="lang-name">Spanish</div><div class="lang-code">es</div></div>
+        <div class="lang-card"><div class="lang-flag">🇪🇨</div><div class="lang-name">Ecuador</div><div class="lang-code">es-EC</div></div>
+        <div class="lang-card"><div class="lang-flag">🇲🇽</div><div class="lang-name">Mexico</div><div class="lang-code">es-MX</div></div>
+        <div class="lang-card"><div class="lang-flag">🇧🇷</div><div class="lang-name">Portuguese</div><div class="lang-code">pt</div></div>
+        <div class="lang-card"><div class="lang-flag">🇫🇷</div><div class="lang-name">French</div><div class="lang-code">fr</div></div>
+        <div class="lang-card"><div class="lang-flag">🇩🇪</div><div class="lang-name">German</div><div class="lang-code">de</div></div>
+        <div class="lang-card"><div class="lang-flag">🇸🇦</div><div class="lang-name">Arabic RTL</div><div class="lang-code">ar</div></div>
+        <div class="lang-card"><div class="lang-flag">🇨🇳</div><div class="lang-name">Chinese</div><div class="lang-code">zh</div></div>
+        <div class="lang-card"><div class="lang-flag">🇯🇵</div><div class="lang-name">Japanese</div><div class="lang-code">ja</div></div>
+      </div>
+    </div>
+
+    <!-- AGENT -->
+    <div id="tab-agent" class="tab-panel">
+      <div class="grid-2" style="margin-bottom:20px;">
+        <div class="metric-card"><div class="metric-label">Agent Identity</div><div style="font-size:14px;font-weight:600;color:var(--orange);margin-top:6px;font-family:var(--font-mono);">FEDGE 2.O</div><div class="metric-sub">Tercer Mundo Module · WAL Protocol v3.1.0</div></div>
+        <div class="metric-card"><div class="metric-label">WhatsApp Bot</div><div style="font-size:14px;font-weight:600;color:var(--green);margin-top:6px;font-family:var(--font-mono);">● LIVE</div><div class="metric-sub">fedge-bot.js · pm2 · 88 skills loaded</div></div>
+      </div>
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="terminal-dot" style="background:#ef4444;"></div>
+          <div class="terminal-dot" style="background:#f59e0b;"></div>
+          <div class="terminal-dot" style="background:#22c55e;"></div>
+          <span class="terminal-title">FEDGE 2.O Agent — tercer-mundo-hq</span>
+        </div>
+        <div class="terminal-log" id="agent-log">
+          <div><span style="color:var(--text3)">2025-05-13 00:00:00</span> <span class="log-ok">[BOOT]</span> FEDGE 2.O online · WAL v3.1.0</div>
+          <div><span style="color:var(--text3)">2025-05-13 00:00:01</span> <span class="log-ok">[INIT]</span> Connected → github.com/cryptofedge/tercer-mundo-hq</div>
+          <div><span style="color:var(--text3)">2025-05-13 00:00:02</span> <span class="log-warn">[ALERT]</span> Anthropic API key — ROTATION REQUIRED</div>
+          <div><span style="color:var(--text3)">2025-05-13 00:00:03</span> <span class="log-err">[CRITICAL]</span> SAYCE: 0/9 works registered</div>
+          <div><span style="color:var(--text3)">2025-05-13 00:00:04</span> <span class="log-err">[CRITICAL]</span> Songtrust: NOT configured</div>
+          <div><span style="color:var(--text3)">2025-05-13 00:00:05</span> <span class="log-err">[CRITICAL]</span> SoundExchange: NOT configured</div>
+          <div><span style="color:var(--text3)">2025-05-13 00:00:06</span> <span class="log-ok">[READY]</span> Dashboard loaded · 8 modules active</div>
+          <div><span class="log-prompt">fedge2o@tercer-mundo-hq:~$</span> <span style="animation:blink 1s infinite;">_</span></div>
+        </div>
+        <div class="terminal-input-row">
+          <span>$</span>
+          <input type="text" placeholder="Type a command... (try: help)" onkeydown="handleTerminalInput(event)">
+        </div>
+      </div>
+      <div style="margin-top:20px;">
+        <div class="section-title">WhatsApp Commands</div>
+        <div class="wa-cmds">
+          <div class="wa-cmd"><div class="wa-cmd-trigger">!mando status</div><div class="wa-cmd-desc">Artist profile + PRO status</div></div>
+          <div class="wa-cmd"><div class="wa-cmd-trigger">!catalog</div><div class="wa-cmd-desc">All 9 works with gaps</div></div>
+          <div class="wa-cmd"><div class="wa-cmd-trigger">!alerts</div><div class="wa-cmd-desc">Critical + high alerts</div></div>
+          <div class="wa-cmd"><div class="wa-cmd-trigger">!rights</div><div class="wa-cmd-desc">PRO status + uncollected</div></div>
+          <div class="wa-cmd"><div class="wa-cmd-trigger">!bookings</div><div class="wa-cmd-desc">Booking pipeline</div></div>
+          <div class="wa-cmd"><div class="wa-cmd-trigger">!hq</div><div class="wa-cmd-desc">Open this dashboard</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+</div>
+<script>
+const tabTitles={dashboard:'Dashboard',analytics:'Analytics',catalog:'Catalog — 9 Works',rights:'Rights & PROs',bookings:'Bookings',tiers:'Tiers & Permissions',languages:'Languages',agent:'Agent Terminal'};
+function goTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+  document.getElementById('topbar-title').textContent=tabTitles[id];
+  if(id==='analytics')initCharts();
+}
+function filterCatalog(q){
+  document.querySelectorAll('#catalog-body tr').forEach(r=>{
+    r.style.display=r.textContent.toLowerCase().includes(q.toLowerCase())?'':'none';
+  });
+}
+let chartsInited=false;
+function initCharts(){
+  if(chartsInited)return;chartsInited=true;
+  const gc='rgba(255,255,255,0.06)',tc='#a0a0aa';
+  Chart.defaults.color=tc;Chart.defaults.borderColor=gc;
+  new Chart(document.getElementById('chart-revenue'),{type:'bar',data:{labels:['SAYCE','Songtrust','SoundExchange','ASCAP gaps'],datasets:[{label:'Est. Annual ($)',data:[2000,2500,1000,500],backgroundColor:['#ef4444cc','#f59e0bcc','#ef4444cc','#f59e0bcc'],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:gc},ticks:{callback:v=>'$'+v}},x:{grid:{display:false}}}}});
+  new Chart(document.getElementById('chart-pro'),{type:'doughnut',data:{labels:['BMI ✓','ASCAP ✓','Missing'],datasets:[{data:[8,6,15],backgroundColor:['#22c55ecc','#f59e0bcc','#ef4444cc'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{boxWidth:12,font:{size:11}}}},cutout:'62%'}});
+  new Chart(document.getElementById('chart-timeline'),{type:'line',data:{labels:['Now','SAYCE','+Songtrust','+SoundExchange','Full'],datasets:[{label:'Monthly ($)',data:[0,80,280,380,650],borderColor:'#FF6200',backgroundColor:'rgba(255,98,0,0.08)',fill:true,tension:0.4,pointBackgroundColor:'#FF6200',pointRadius:5}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:gc},ticks:{callback:v=>'$'+v}},x:{grid:{display:false}}}}});
+}
+const cmds={'!mando status':'→ Mando El Pelado | T1 | BMI ✓ ASCAP partial SAYCE ✗ | 9 works | Active','!alerts':'→ 4 CRITICAL · 2 HIGH\n  [CRIT] Rotate API key\n  [CRIT] SAYCE 0/9\n  [CRIT] Noche en Miami unregistered\n  [CRIT] Una Bandida+Buscando missing ASCAP','!catalog':'→ 9 works loaded · 3 with registration gaps','!rights':'→ SAYCE: 0/9 | Songtrust: ✗ | SoundExchange: ✗\n  Uncollected: ~$7.8K/yr','help':'→ Commands: !mando status · !alerts · !catalog · !rights · !bookings · clear','clear':'__CLEAR__'};
+function handleTerminalInput(e){
+  if(e.key!=='Enter')return;
+  const input=e.target,log=document.getElementById('agent-log'),cmd=input.value.trim();
+  input.value='';if(!cmd)return;
+  if(cmd==='clear'){log.innerHTML='';return;}
+  const entry=document.createElement('div');
+  entry.innerHTML=`<span class="log-prompt">fedge2o@tercer-mundo-hq:~$</span> ${cmd}`;
+  log.appendChild(entry);
+  const r=cmds[cmd]||cmds[cmd.toLowerCase()];
+  const out=document.createElement('div');
+  out.innerHTML=r&&r!=='__CLEAR__'?`<span class="log-ok">${r.replace(/\n/g,'<br>')}</span>`:`<span class="log-warn">Command not found: ${cmd} · type 'help'</span>`;
+  log.appendChild(out);
+  const cur=document.createElement('div');
+  cur.innerHTML=`<span class="log-prompt">fedge2o@tercer-mundo-hq:~$</span> <span style="animation:blink 1s infinite;">_</span>`;
+  log.appendChild(cur);
+  log.scrollTop=log.scrollHeight;
+}
+</script>
+</body>
+</html>
